@@ -1,0 +1,73 @@
+/*
+.animation_top (@name, @pxFrom, @pxTo) {//案例01
+  @-moz-keyframes "@name" {
+    0% {
+      top: @pxFrom;
+      opacity: 0;
+    }
+    100% {
+      top: @pxTo;
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes @name {
+    0% {
+      top: @pxFrom;
+      opacity: 0;
+    }
+    100% {
+      top: @pxTo;
+      opacity: 1;
+    }
+  }
+
+  @-ms-keyframes @name {
+    0% {
+      top: @pxFrom;
+      opacity: 0;
+    }
+    100% {
+      top: @pxTo;
+      opacity: 1;
+    }
+  }
+}
+*/
+//测试。。。
+.animation-keyframes(@name, @from, @to, @anim-selector) {
+  @keyf: ~"@keyframes @{name} { `'\n'`from ";
+  @anim: ~"} `'\n'`.@{anim-selector}";
+  @{keyf} {
+    .from(@name,@from);
+  }
+  to {
+    .to(@name,@to);
+  }
+
+  @{anim} {
+    animation-name:@name;
+  }
+}
+/*
+  // name-specific from and to mixins that are used if first argument equals "colors"
+  .from (colors, @color) {
+    color: @color;
+  }
+  .to (colors, @color) {
+    color: @color;
+  }
+  // test
+  .animation-keyframes (colors, red, blue, my-colanim);
+
+  @keyframes colors {
+  from {
+    color: #ff0000;
+  }
+  to {
+    color: #0000ff;
+  }
+  }
+  .my-colanim {
+    animation-name: colors;
+  }
+*/
